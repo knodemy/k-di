@@ -1,3 +1,4 @@
+/* To create table mdl_authorize_cardcredential to store the Authorize.net Customer details to perform transaction */
 CREATE TABLE IF NOT EXISTS `mdl_authorize_cardcredential` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` bigint(100) NOT NULL,
@@ -9,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `mdl_authorize_cardcredential` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+/* To create table mdl_authourize_student_mins to store the details of the lesson durations they are purchasing */
 CREATE TABLE IF NOT EXISTS `mdl_authourize_student_mins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) DEFAULT NULL,
@@ -25,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `mdl_authourize_student_mins` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+/* To create table mdl_enrol_activeenrol_list to track the course enrolment details of the user */
 CREATE TABLE IF NOT EXISTS `mdl_enrol_activeenrol_list` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `paymentmethod` varchar(50) NOT NULL DEFAULT 'cc',
@@ -42,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `mdl_enrol_activeenrol_list` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Holds all known information about Active enrol authorize.net transactions' AUTO_INCREMENT=1 ;
 
+/* To create table mdl_enrol_activerecurring_list to track the recurring transactions for the active enrol list */
 CREATE TABLE IF NOT EXISTS `mdl_enrol_activerecurring_list` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `paymentmethod` varchar(30) NOT NULL DEFAULT 'cc',
@@ -60,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `mdl_enrol_activerecurring_list` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Holds' AUTO_INCREMENT=1 ;
 
+/* To create table mdl_enrol_authorize to store the Authorize.net Payment Transaction details */
 CREATE TABLE IF NOT EXISTS `mdl_enrol_authorize` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `paymentmethod` varchar(50) NOT NULL DEFAULT 'cc',
@@ -82,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `mdl_enrol_authorize` (
   KEY `mdl_enroauth_tra_ix` (`transid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Holds all known information about authorize.net transactions' AUTO_INCREMENT=1 ;
 
+/* To create table mdl_knouser_allocated_mins to track the course duration for the enrolled lesson */
 CREATE TABLE IF NOT EXISTS `mdl_knouser_allocated_mins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) DEFAULT NULL,
@@ -96,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `mdl_knouser_allocated_mins` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
+/* To update values to the existing table mdl_paypal_package  */
 UPDATE `mdl_paypal_package` SET `duration` = '15' WHERE `mdl_paypal_package`.`id` =1;
 UPDATE `mdl_paypal_package` SET `duration` = '30' WHERE `mdl_paypal_package`.`id` =2;
 UPDATE `mdl_paypal_package` SET `duration` = '60' WHERE `mdl_paypal_package`.`id` =3;
