@@ -102,12 +102,53 @@ CREATE TABLE IF NOT EXISTS `mdl_knouser_allocated_mins` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/* To update values to the existing table mdl_paypal_package  */
-UPDATE `mdl_paypal_package` SET `duration` = '15' WHERE `mdl_paypal_package`.`id` =1;
-UPDATE `mdl_paypal_package` SET `duration` = '30' WHERE `mdl_paypal_package`.`id` =2;
-UPDATE `mdl_paypal_package` SET `duration` = '60' WHERE `mdl_paypal_package`.`id` =3;
-UPDATE `mdl_paypal_package` SET `duration` = '120' WHERE `mdl_paypal_package`.`id` =4;
-UPDATE `mdl_paypal_package` SET `name` ='Code Camp',`description` = 'Duration 8 Hours',`course_name` = 'Code Camp',`cost` ='40',`duration` = '8',`max_students` ='1' WHERE `mdl_paypal_package`.`id` =5;
-UPDATE `mdl_paypal_package` SET `name` ='Girls Code Camp',`description` = 'Duration 6 Hours',`course_name` = 'Girls Code Camp',`cost` ='249',`duration` = '8' WHERE `mdl_paypal_package`.`id` =6;
-UPDATE `mdl_paypal_package` SET `status`='0' WHERE `mdl_paypal_package`.`id` =7;
-UPDATE `mdl_paypal_package` SET `status`='0' WHERE `mdl_paypal_package`.`id` =8;
+--
+-- Table structure for table `mdl_enrol_authorize_refunds`
+--
+
+CREATE TABLE IF NOT EXISTS `mdl_enrol_authorize_refunds` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `orderid` bigint(10) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `amount` varchar(10) NOT NULL DEFAULT '',
+  `transid` bigint(20) DEFAULT '0',
+  `settletime` bigint(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_enroauthrefu_tra_ix` (`transid`),
+  KEY `mdl_enroauthrefu_ord_ix` (`orderid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Authorize.net refunds' AUTO_INCREMENT=1 ;
+
+
+--
+-- Dumping data for table `mdl_capabilities`
+--
+
+INSERT INTO `mdl_capabilities` (`name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES
+('enrol/authorize:config', 'write', 50, 'enrol_authorize', 0),
+('enrol/authorize:manage', 'write', 50, 'enrol_authorize', 0),
+('enrol/authorize:unenrol', 'write', 50, 'enrol_authorize', 0),
+('enrol/authorize:unenrolself', 'write', 50, 'enrol_authorize', 0),
+('enrol/authorize:managepayments', 'write', 10, 'enrol_authorize', 8),
+('enrol/authorize:uploadcsv', 'write', 10, 'enrol_authorize', 4);
+
+--
+-- Dumping data for table  `mdl_message_providers`
+--
+
+INSERT INTO `mdl_message_providers` (`name`, `component`, `capability`) VALUES
+('authorize_enrolment', 'enrol_authorize', NULL);
+
+
+--
+-- Dumping data for table  `mdl_role_capabilities`
+--
+
+INSERT INTO `mdl_role_capabilities` (`contextid`, `roleid`, `capability`, `permission`, `timemodified`, `modifierid`) VALUES
+(1, 1, 'enrol/authorize:config', 1, 1426825154, 2),
+(1, 1, 'enrol/authorize:manage', 1, 1426825154, 2),
+(1, 3, 'enrol/authorize:manage', 1, 1426825154, 2),
+(1, 1, 'enrol/authorize:unenrol', 1, 1426825154, 2),
+(1, 1, 'enrol/authorize:managepayments', 1, 1426825154, 2),
+(1, 1, 'enrol/authorize:uploadcsv', 1, 1426825154, 2);
+
+
